@@ -12,6 +12,7 @@
 #	define ML_MAX_LOGGERS 64
 #endif
 
+
 typedef uint32_t ml_logger_id_t;
 
 typedef enum {
@@ -22,6 +23,10 @@ typedef enum {
 	ML_LOG_SEVERITY_ERROR,
 	ML_LOG_SEVERITY_FATAL,
 } ml_severity_t;
+
+#define ML_SEVERITY_FLAGS_ALL (1 << ML_LOG_SEVERITY_TRACE) | (1 << ML_LOG_SEVERITY_DEBUG) | (1 << ML_LOG_SEVERITY_INFO) | (1 << ML_LOG_SEVERITY_WARNING) | (1 << ML_LOG_SEVERITY_ERROR) | (1 << ML_LOG_SEVERITY_FATAL)
+
+#define ML_SEVERITY_FLAGS_ERROR_ONLY (1 << ML_LOG_SEVERITY_WARNING) | (1 << ML_LOG_SEVERITY_ERROR) | (1 << ML_LOG_SEVERITY_FATAL)
 
 bool ml_create_logger(const char* name, uint32_t severity_flags, FILE* file, ml_logger_id_t logger_id);
 void ml_log(ml_logger_id_t logger_id, ml_severity_t severity, const char *message, ...);
