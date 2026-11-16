@@ -1,6 +1,10 @@
 #ifndef MINILOG_H_
 #define MINILOG_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 #include <stdio.h>
 
@@ -31,5 +35,9 @@ typedef enum {
 bool ml_create_logger(const char* name, uint32_t severity_flags, FILE* file, ml_logger_id_t logger_id);
 void ml_log(ml_logger_id_t logger_id, ml_severity_t severity, const char *message, ...);
 void ml_destroy_logger(ml_logger_id_t logger_id);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // MINILOG_H_
